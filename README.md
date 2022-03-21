@@ -1,2 +1,2 @@
 # chat
-Real time chat with Node, Express, Socket.io, React
+Real time chat with Node, Express, WebSocket, React
