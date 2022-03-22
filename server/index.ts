@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
 import colors from 'colors';
 import express from 'express';
-import { createServer, Server } from 'http';
+import { createServer } from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
+import messagesRoutes from './routes/messages.routes';
 
 dotenv.config();
 
@@ -10,19 +11,20 @@ const port = process.env.PORT || 5000;
 const mode = process.env.APP_MODE || 'dev';
 
 const app = express();
+
+app.use('/api/messages/', messagesRoutes);
+
 const server = createServer(app);
 const wss = new WebSocketServer({ server: server });
 
 wss.on('connection', (ws: WebSocket) => {
-  ws.send('Welcome');
   console.log('new user connected');
 
-  ws.on('message', (msg: BufferSource) => {
-    console.log();
-    console.log('received: %s', msg);
+  ws.on('message', (msg: string) => {
+    const body = JSON.parse(msg);
 
     wss.clients.forEach((ws) => {
-      ws.send(new TextDecoder('utf-8').decode(msg));
+      ws.send(JSON.stringify(body));
     });
   });
 });

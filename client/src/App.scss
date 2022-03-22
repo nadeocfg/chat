@@ -1,0 +1,72 @@
+#root {
+  height: 100vh;
+  width: 100%;
+}
+
+.App {
+  background-color: #282c34;
+  height: 100%;
+
+  .container {
+    width: auto;
+    max-width: 960px;
+    height: calc(100% - 80px);
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  .messenger {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #fff;
+      font-size: 48px;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .msg-box {
+      position: relative;
+      flex-grow: 1;
+      overflow-y: auto;
+
+      &__item {
+        width: fit-content;
+        margin-bottom: 12px;
+        padding: 4px 12px;
+        font-size: 18px;
+        background: #fff;
+        border-radius: 8px;
+
+        .date {
+          font-size: 12px;
+          color: #777;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      input {
+        flex-grow: 1;
+        width: 50px;
+        margin-right: 12px;
+        padding: 12px 24px;
+        font-size: 18px;
+      }
+
+      button {
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 18px;
+      }
+    }
+  }
+}
